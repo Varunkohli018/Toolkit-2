@@ -1,0 +1,29 @@
+<!-- index.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image to PDF converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Image to PDF converter</h1>
+    <div class="menu">
+      <button id="menu-toggle">&#8942;</button>
+      <ul id="dropdown">
+        <li onclick="viewPDFFiles()">PDF Files</li>
+        <li onclick="shareApp()">Share app</li>
+        <li onclick="leaveFeedback()">Leave a feedback</li>
+        <li onclick="privacyPolicy()">Privacy Policy</li>
+      </ul>
+    </div>
+  </header>  <main>
+    <div class="image-preview" id="preview">
+      <img src="placeholder.png" alt="No Image" id="preview-img" />
+      <p id="status">No images selected.<br/>Select some images first on the add button below.</p>
+    </div>
+    <input type="file" id="image-upload" accept="image/*" multiple hidden />
+    <button class="add-btn" onclick="document.getElementById('image-upload').click()">+</button>
+    <button class="convert-btn" onclick="createImagePdf()">CONVERT TO PDF</button>
+  </main>  <script src="script.js"></script></body>
+</html>
