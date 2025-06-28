@@ -1,4 +1,5 @@
-<!-- index.html --><!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,13 +18,23 @@
         <li onclick="privacyPolicy()">Privacy Policy</li>
       </ul>
     </div>
-  </header>  <main>
+  </header>
+
+  <main>
     <div class="image-preview" id="preview">
       <img src="placeholder.png" alt="No Image" id="preview-img" />
       <p id="status">No images selected.<br/>Select some images first on the add button below.</p>
     </div>
+
     <input type="file" id="image-upload" accept="image/*" multiple hidden />
     <button class="add-btn" onclick="document.getElementById('image-upload').click()">+</button>
     <button class="convert-btn" onclick="createImagePdf()">CONVERT TO PDF</button>
-  </main>  <script src="script.js"></script></body>
+  </main>
+
+  <!-- jsPDF Library (IMPORTANT) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Your JS file -->
+  <script src="script.js"></script>
+</body>
 </html>
