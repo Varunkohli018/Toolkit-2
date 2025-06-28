@@ -3,38 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image to PDF converter</title>
+  <title>PDF Toolkit</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
   <header>
-    <h1>Image to PDF converter</h1>
-    <div class="menu">
-      <button id="menu-toggle">&#8942;</button>
-      <ul id="dropdown">
-        <li onclick="viewPDFFiles()">PDF Files</li>
-        <li onclick="shareApp()">Share app</li>
-        <li onclick="leaveFeedback()">Leave a feedback</li>
-        <li onclick="privacyPolicy()">Privacy Policy</li>
-      </ul>
+    <div class="top-bar">
+      <h1>PDF Toolkit</h1>
+      <div class="dropdown">
+        <button class="menu-icon">☰</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="navigateTo('myFiles')">My Files</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Feedback</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main>
-    <div class="image-preview" id="preview">
-      <img src="placeholder.png" alt="No Image" id="preview-img" />
-      <p id="status">No images selected.<br/>Select some images first on the add button below.</p>
+  <main id="homePage">
+    <div class="grid">
+      <button onclick="navigateTo('textToPdf')">Text to PDF</button>
+      <button onclick="navigateTo('imageToPdf')">Image to PDF</button>
+      <button onclick="navigateTo('mergePdf')">Merge PDFs</button>
+      <button onclick="navigateTo('editPdf')">Edit PDF</button>
+      <button onclick="navigateTo('myFiles')">My Files</button>
+      <button onclick="navigateTo('receiptMaker')">Receipt Maker</button>
     </div>
-
-    <input type="file" id="image-upload" accept="image/*" multiple hidden />
-    <button class="add-btn" onclick="document.getElementById('image-upload').click()">+</button>
-    <button class="convert-btn" onclick="createImagePdf()">CONVERT TO PDF</button>
   </main>
 
-  <!-- jsPDF Library (IMPORTANT) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <section id="textToPdfPage" class="hidden">
+    <h2>Enter Text</h2>
+    <textarea id="pdfText" placeholder="Write here..."></textarea>
+    <button onclick="createTextPdf()">Create PDF</button>
+  </section>
 
-  <!-- Your JS file -->
+  <section id="imageToPdfPage">
+  <h2>Select Image</h2>
+  <button onclick="document.getElementById('imageInput').click()">Choose Image</button>
+  <input type="file" accept="image/*" id="imageInput" multiple style="display: none;" />
+  <br><br>
+  <button onclick="createImagePdf()">Create PDF</button>
+  </section>
+
+  <section id="mergePdfPage" class="hidden">
+    <h2>Merge PDFs</h2>
+    <input type="file" id="mergeInput" accept="application/pdf" multiple />
+    <button onclick="mergeFiles()">Create PDF</button>
+  </section>
+
+  <section id="editPdfPage" class="hidden">
+    <h2>Edit PDF</h2>
+    <input type="file" id="editPdfInput" accept="application/pdf" />
+    <textarea id="editText" placeholder="Edit content here..."></textarea>
+    <button onclick="editPdf()">Create PDF</button>
+  </section>
+
+  <section id="myFilesPage" class="hidden">
+    <h2>My Files</h2>
+    <ul id="fileList"></ul>
+  </section>
+
+  <section id="receiptMakerPage" class="hidden">
+    <h2>Receipt Maker</h2>
+    <form id="receiptForm">
+      <input type="text" placeholder="Date" id="r_date" required><br>
+      <input type="text" placeholder="Customer Name" id="r_name" required><br>
+      <input type="text" placeholder="Item Description" id="r_item" required><br>
+      <input type="number" placeholder="Quantity" id="r_qty" required><br>
+      <input type="number" placeholder="Price per item" id="r_price" required><br>
+      <button type="button" onclick="createReceiptPdf()">Create Receipt</button>
+    </form>
+  </section>
+
+  <div class="bottom-nav">
+    <button onclick="goHome()">Home</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
